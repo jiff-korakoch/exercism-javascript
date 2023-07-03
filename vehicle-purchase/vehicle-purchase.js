@@ -27,7 +27,7 @@ export function chooseVehicle(option1, option2) {
     return option1 + " is clearly the better choice.";    
   } else {
     return option2 + " is clearly the better choice.";
-}
+  }
 }
 
 /**
