@@ -43,7 +43,7 @@ export function calculateResellPrice(originalPrice, age) {
     return originalPrice * 0.8 ;
   } else if(age > 10){
     return originalPrice * 0.5;
-  } else if(age >= 3 && age <= 10){
+  } else {
     return originalPrice * 0.7;
   }
 }
