@@ -25,7 +25,7 @@ export function needsLicense(kind) {
 export function chooseVehicle(option1, option2) {
   if (option1.toLowerCase() < option2.toLowerCase()) {
     return option1 + " is clearly the better choice.";    
-  } else if(option2 < option1){
+  } else {
     return option2 + " is clearly the better choice.";
 }
 }
