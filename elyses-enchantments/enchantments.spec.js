@@ -61,6 +61,13 @@ describe('sleight of hand', () => {
     const expected = [7, 7, 7];
     expect(setItem(stack, position, replacement)).toStrictEqual(expected);
   });
+  test("stack does not change", () => {
+    const stack = [3, 2, 1,];
+    const position = 0;
+    const replacement = 1;
+    setItem(stack, position, replacement);
+    expect(stack).toStrictEqual([3, 2, 1]);
+  });
 });
 
 describe('make cards appear at the top', () => {
@@ -93,17 +100,17 @@ describe('make cards appear at the top', () => {
     const newCard = 8;
 
     const expected = [1, 5, 9, 8];
-    expect(insertItemAtTop(stack, newCard)).toStrictEqual(expected);
+    const newStack = insertItemAtTop(stack, newCard);
+    expect(newStack).toStrictEqual(expected);
   });
 
   test('adding multiple cards to the stack at the top', () => {
     const stack = [1];
-
-    insertItemAtTop(stack, 5);
-    insertItemAtTop(stack, 9);
+    const newStack = insertItemAtTop(stack, 5);
+    const newStack2 = insertItemAtTop(newStack, 9);
 
     const expected = [1, 5, 9];
-    expect(stack).toStrictEqual(expected);
+    expect(newStack2).toStrictEqual(expected);
   });
 });
 
@@ -144,12 +151,11 @@ describe('make cards disappear', () => {
 
   test('remove the middle two cards', () => {
     const stack = [1, 2, 3, 4];
-
-    removeItem(stack, 1);
-    removeItem(stack, 1);
+    const newStack = removeItem(stack,1);
+    const newStack2 = removeItem(newStack,1);
 
     const expected = [1, 4];
-    expect(stack).toStrictEqual(expected);
+    expect(newStack2).toStrictEqual(expected);
   });
 });
 
@@ -169,11 +175,11 @@ describe('make the top card disappear', () => {
   test('remove two cards from the top', () => {
     const stack = [1, 2, 3];
 
-    removeItemFromTop(stack);
-    removeItemFromTop(stack);
+    const newStack = removeItemFromTop(stack);
+    const newStack2 = removeItemFromTop(newStack);
 
     const expected = [1];
-    expect(stack).toStrictEqual(expected);
+    expect(newStack2).toStrictEqual(expected);
   });
 });
 
@@ -213,11 +219,11 @@ describe('make cards appear at the bottom', () => {
   test('adding multiple cards to the stack to the bottom', () => {
     const stack = [1];
 
-    insertItemAtBottom(stack, 5);
-    insertItemAtBottom(stack, 9);
+    const newStack = insertItemAtBottom(stack, 5);
+    const newStack2 = insertItemAtBottom(newStack, 9);
 
     const expected = [9, 5, 1];
-    expect(stack).toStrictEqual(expected);
+    expect(newStack2).toStrictEqual(expected);
   });
 });
 
@@ -237,11 +243,11 @@ describe('make the bottom card disappear', () => {
   test('remove two cards from the bottom', () => {
     const stack = [1, 2, 3];
 
-    removeItemAtBottom(stack);
-    removeItemAtBottom(stack);
+    const newStack = removeItemAtBottom(stack);
+    const newStack2 = removeItemAtBottom(newStack);
 
     const expected = [3];
-    expect(stack).toStrictEqual(expected);
+    expect(newStack2).toStrictEqual(expected);
   });
 });
 
