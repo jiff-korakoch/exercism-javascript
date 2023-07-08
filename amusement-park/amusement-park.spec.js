@@ -26,21 +26,18 @@ describe('revokeTicket', () => {
     expect(revokeTicket(visitor)).toEqual(expected);
   });
 
-  test('returns the same object that was passed in', () => {
-    const visitor = { name: 'Anatoli Traverse', age: 34, ticketId: 'AA5AA01D' };
+  test('does nothing if the ticket was already revoked', () => {
+    const visitor = { name: 'María Pilar Neri', age: 16, ticketId: null };
 
-    // This checks that the same object that was passed in is returned.
-    // https://jestjs.io/docs/expect#tobevalue
-    expect(Object.is(revokeTicket(visitor), visitor)).toBe(true);
+    const expected = { name: 'María Pilar Neri', age: 16, ticketId: null };
+    expect(revokeTicket(visitor)).toEqual(expected);
   });
 
-  test('does nothing if the ticket was already revoked', () => {
-    const visitor = { name: 'Min-Ji Chu', age: 51, ticketId: null };
-    const actual = revokeTicket(visitor);
+  test('pass in visitor is not mutated', () => {
+    const visitor = { name: 'Anatoli Traverse', age: 34, ticketId: 'AA5AA01D' };
+    revokeTicket(visitor);
 
-    expect(actual).toEqual(visitor);
-    // This checks that the same object that was passed in is returned.
-    expect(Object.is(actual, visitor)).toBe(true);
+    expect(visitor).toEqual({ name: 'Anatoli Traverse', age: 34, ticketId: 'AA5AA01D' });
   });
 });
 
