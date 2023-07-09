@@ -22,17 +22,15 @@ export function twoSum(array1, array2) {
  * @returns {boolean} whether the number is a palindrome or not
  */
 export function luckyNumber(value) {
-  let a = String(value);
-  let i = a.length-1;
-  let b = "";
-    while (i >=0) {
-      b += a[i];
-    i--;  
-    }if  ( a === b) {
-      return true;
-    }else  {
-      return false;
-  }  
+  const numberStr  = String(value);
+  const numberArr = numberStr.split('');
+  numberArr.reverse();
+  const number = numberArr.join('');
+  if (number == value) {
+    return true;
+  }else {
+    return false;
+  }
 }
 
 /**
