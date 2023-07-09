@@ -8,22 +8,11 @@
  * @returns {number} sum of the two arrays
  */
 export function twoSum(array1, array2) {  
- // let i = 0;
- // let j = 0;
- // let a = "";
- // let b = "";
- // while (i < array1.length) {
- //   a += String(array1[i]);
- //   i++;
- // }
- // while (j < array2.length) {
- //   b += String(array2[j]);
- //   j++;
- // }
- // return Number(String(a)) + Number(String(b));
-  const a = array1.join('');
-  const b = array2.join('');
-  return Number(String(a)) + Number(String(b));
+  const sumArrays1 = Array.from(array1);
+  const sumArrays2 = Array.from(array2);
+  const num1 = Number(sumArrays1.join(""));
+  const num2 = Number(sumArrays2.join(""));
+  return num1 + num2;
 }
 
 /**
