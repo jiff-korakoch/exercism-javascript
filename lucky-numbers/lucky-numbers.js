@@ -41,13 +41,12 @@ export function luckyNumber(value) {
  * @returns {string} error message
  */
 export function errorMessage(input) {
-  let a = input;
-      a = a ?? null ?? undefined ;
-  if( a === "" || a === undefined || a === null ){
+  const value = input ?? null ?? undefined ;
+  if ( value === "" || value === undefined || value === null ) {
     return "Required field";
-  }else if(Number(input)){
+  }else if (Number(input)) {
     return ""; 
-  }else{
+  }else {
     return "Must be a number besides 0";
   }
 }
