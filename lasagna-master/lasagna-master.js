@@ -19,3 +19,7 @@ export function cookingStatus(remainingTime) {
     return "Not done, please wait.";
   }
 };
+
+export function preparationTime(layers,time = 2) {
+  return layers.length * time;
+}
