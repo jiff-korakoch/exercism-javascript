@@ -23,3 +23,19 @@ export function cookingStatus(remainingTime) {
 export function preparationTime(layers,time = 2) {
   return layers.length * time;
 }
+
+export function quantities(layers) {
+  let noodles = 0;
+  let sauce = 0;
+  for (let i = 0; i < layers.length; i++) {
+    if (layers[i] === "noodles") {
+      noodles += 50;
+    } else if (layers[i] === "sauce") {
+      sauce += 0.2;
+    }
+  }
+  return {
+    noodles: noodles,
+    sauce: sauce,
+  };
+}
