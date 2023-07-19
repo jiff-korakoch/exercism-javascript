@@ -39,3 +39,8 @@ export function quantities(layers) {
     sauce: sauce,
   };
 }
+
+export function addSecretIngredient(friendsList, myList) {
+  const copyFriendsList = [...friendsList];
+  myList.push(copyFriendsList.pop());
+}
