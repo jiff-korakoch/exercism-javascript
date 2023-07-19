@@ -44,3 +44,12 @@ export function addSecretIngredient(friendsList, myList) {
   const copyFriendsList = [...friendsList];
   myList.push(copyFriendsList.pop());
 }
+
+export function scaleRecipe(recipe, portions) {
+  const copyRecipe = {...recipe};
+  const forTwoPortions = portions / 2;
+  for(let i in copyRecipe) {
+    copyRecipe[i] *= forTwoPortions;
+  }
+  return copyRecipe;
+}
