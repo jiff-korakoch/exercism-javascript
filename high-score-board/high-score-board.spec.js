@@ -31,13 +31,10 @@ describe('addPlayer', () => {
     expect(actual).toEqual(expected);
   });
 
-  test('returns the existing score board', () => {
+  test('exiting score board remian the same', () => {
     const scoreBoard = {};
-    const actual = addPlayer(scoreBoard, 'Jesse Johnson', 1337);
-
-    // This checks that the same object that was passed in is returned.
-    // https://jestjs.io/docs/expect#tobevalue
-    expect(Object.is(actual, scoreBoard)).toBe(true);
+    addPlayer(scoreBoard, 'Jesse Johnson', 1337);
+    expect(scoreBoard).toEqual({});
   });
 });
 
@@ -56,9 +53,11 @@ describe('removePlayer', () => {
 
     const actual = removePlayer(scoreBoard, 'Jesse Johnson');
     expect(actual).toEqual(expected);
-
-    // This checks that the same object that was passed in is returned.
-    expect(Object.is(actual, scoreBoard)).toBe(true);
+    expect(scoreBoard).toEqual({
+      'Amil Pastorius': 99373,
+      'Min-seo Shin': 0,
+      'Jesse Johnson': 1337,
+    });
   });
 
   test('does nothing if the player is not on the board', () => {
@@ -70,9 +69,11 @@ describe('removePlayer', () => {
 
     const actual = removePlayer(scoreBoard, 'Bruno Santangelo');
     expect(actual).toEqual(scoreBoard);
-
-    // This checks that the same object that was passed in is returned.
-    expect(Object.is(actual, scoreBoard)).toBe(true);
+    expect(scoreBoard).toEqual({
+      'Amil Pastorius': 99373,
+      'Min-seo Shin': 0,
+      'Jesse Johnson': 1337,
+    });
   });
 });
 
@@ -90,12 +91,14 @@ describe('updateScore', () => {
       'Jesse Johnson': 2674,
     };
 
-    updateScore(scoreBoard, 'Min-seo Shin', 1999);
-    const actual = updateScore(scoreBoard, 'Jesse Johnson', 1337);
+    const scoreBoard2 = updateScore(scoreBoard, 'Min-seo Shin', 1999);
+    const actual = updateScore(scoreBoard2, 'Jesse Johnson', 1337);
     expect(actual).toEqual(expected);
-
-    // This checks that the same object that was passed in is returned.
-    expect(Object.is(actual, scoreBoard)).toBe(true);
+    expect(scoreBoard).toEqual({
+      'Amil Pastorius': 99373,
+      'Min-seo Shin': 0,
+      'Jesse Johnson': 1337,
+    });
   });
 });
 
@@ -115,18 +118,18 @@ describe('applyMondayBonus', () => {
 
     const actual = applyMondayBonus(scoreBoard);
     expect(actual).toEqual(expected);
-
-    // This checks that the same object that was passed in is returned.
-    expect(Object.is(actual, scoreBoard)).toBe(true);
+    expect(scoreBoard).toEqual({
+      'Amil Pastorius': 345,
+      'Min-seo Shin': 19,
+      'Jesse Johnson': 122,
+    });
   });
 
   test('does nothing if the score board is empty', () => {
     const scoreBoard = {};
     const actual = applyMondayBonus(scoreBoard);
     expect(actual).toEqual({});
-
-    // This checks that the same object that was passed in is returned.
-    expect(Object.is(actual, scoreBoard)).toBe(true);
+    expect(scoreBoard).toEqual({});
   });
 });
 

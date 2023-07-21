@@ -7,8 +7,7 @@
  * @returns {Record<string, number>} new score board
  */
 export function createScoreBoard() {
-  const highScoreBoard ={ "The Best Ever": 1000000 };
-  return highScoreBoard;
+  return { "The Best Ever": 1000000 };
 }
 
 /**
@@ -20,9 +19,9 @@ export function createScoreBoard() {
  * @returns {Record<string, number>} updated score board
  */
 export function addPlayer(scoreBoard, player, score) {
-  
-  scoreBoard[player] = score;
-  return scoreBoard;
+  // const newScoreBoard = {...scoreBoard};
+  // newScoreBoard[player] = score;
+  return {...scoreBoard, [player]: score };
 }
 
 /**
@@ -33,9 +32,9 @@ export function addPlayer(scoreBoard, player, score) {
  * @returns {Record<string, number>} updated score board
  */
 export function removePlayer(scoreBoard, player) {
-
-  delete scoreBoard[player];
-  return scoreBoard;
+  // const newScoreBoard = {...scoreBoard};
+  // delete newScoreBoard[player];
+  return {...scoreBoard, [player]: undefined};
 }
 
 /**
@@ -47,9 +46,9 @@ export function removePlayer(scoreBoard, player) {
  * @returns {Record<string, number>} updated score board
  */
 export function updateScore(scoreBoard, player, points) {
-  
-  scoreBoard[player] = scoreBoard[player] + points;
-  return scoreBoard;
+  //const newScoreBoard = {...scoreBoard};
+  //newScoreBoard[player] = newScoreBoard[player] + points;
+  return {...scoreBoard, [player]: scoreBoard[player] + points};
 }
 
 /**
@@ -59,11 +58,11 @@ export function updateScore(scoreBoard, player, points) {
  * @returns {Record<string, number>} updated score board
  */
 export function applyMondayBonus(scoreBoard) {
-  
-  for (let updated in scoreBoard){
-    scoreBoard[updated] = scoreBoard[updated] + 100;
+  let newScoreBoard = scoreBoard;
+  for (let updated in scoreBoard) {
+    newScoreBoard = updateScore(newScoreBoard, updated, 100);
   }
-    return scoreBoard;
+  return newScoreBoard;
 }
 
 /**
