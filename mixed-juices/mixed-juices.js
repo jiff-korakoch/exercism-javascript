@@ -11,23 +11,22 @@
  * @returns {number} time in minutes
  */
 export function timeToMixJuice(name) {
-  let timeInMinutes = 0;
   switch (name) {
     case "Pure Strawberry Joy":
-      return timeInMinutes = 0.5;
+      return 0.5;
       break;
     case "Energizer":
     case "Green Garden":
-      return timeInMinutes = 1.5;
+      return 1.5;
       break;
     case "Tropical Island":
-      return timeInMinutes = 3;
+      return 3;
       break;
     case "All or Nothing":
-      return timeInMinutes = 5;
+      return 5;
       break;
     default:
-      return timeInMinutes = 2.5;
+      return 2.5;
   }
 }
 
