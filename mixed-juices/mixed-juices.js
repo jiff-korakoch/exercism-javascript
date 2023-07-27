@@ -61,23 +61,7 @@ export function limesToCut(wedgesNeeded, limes) {
  */
 export function remainingOrders(timeLeft, orders) {
   while (timeLeft > 0) {
-    switch (orders.shift()) {
-      case "Pure Strawberry Joy":
-        timeLeft -= 0.5;
-        break;
-      case "Energizer" :
-      case "Green Garden":
-        timeLeft -= 1.5;
-        break;
-      case "Tropical Island":
-        timeLeft -= 3;
-        break;
-      case "All or Nothing":
-        timeLeft -= 5;
-        break;
-      default:
-        timeLeft -= 2.5;
-    }
+    timeLeft -= timeToMixJuice(orders.shift());
   }
   return orders;
 }
