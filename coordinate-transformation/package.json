@@ -9,6 +9,7 @@
     "url": "https://github.com/exercism/javascript",
     "directory": "exercises/concept/coordinate-transformation"
   },
+  "type": "common",
   "devDependencies": {
     "@babel/core": "^7.22.9",
     "@exercism/babel-preset-javascript": "^0.2.1",

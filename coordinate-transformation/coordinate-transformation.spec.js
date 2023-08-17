@@ -23,20 +23,17 @@ describe('translate2d', () => {
     expect(typeof translate2d(0, 0)).toBe('function');
   });
 
-  const dx = 3;
-  const dy = -5;
-  const translator = translate2d(dx, dy);
-  const x1 = 0;
-  const y1 = 0;
-  const expected = [3, -5];
   test('should be predictable', () => {
+    const dx = 3;
+    const dy = -5;
+    const translator = translate2d(dx, dy);
+    const x1 = 0;
+    const y1 = 0;
+    const expected = [3, -5];
     expect(translator(x1, y1)).toEqual(expected);
-  });
-
-  const x2 = 4;
-  const y2 = 5;
-  const reusedExpected = [7, 0];
-  test('should be reusable', () => {
+    const x2 = 4;
+    const y2 = 5;
+    const reusedExpected = [7, 0];
     expect(translator(x2, y2)).toEqual(reusedExpected);
   });
 });
@@ -46,52 +43,77 @@ describe('scale2d', () => {
     expect(typeof scale2d(0, 0)).toBe('function');
   });
 
-  const dx = 4;
-  const dy = 2;
-  const scaler = scale2d(dx, dy);
-  const x1 = 1;
-  const y1 = 1;
-  const expected = [4, 2];
   test('should be predictable', () => {
+    const dx = 4;
+    const dy = 2;
+    const scaler = scale2d(dx, dy);
+    const x1 = 1;
+    const y1 = 1;
+    const expected = [4, 2];
     expect(scaler(x1, y1)).toEqual(expected);
-  });
-
-  const x2 = -2;
-  const y2 = 5;
-  const reusedExpected = [-8, 10];
-  test('should be reusable', () => {
+    const x2 = -2;
+    const y2 = 5;
+    const reusedExpected = [-8, 10];
     expect(scaler(x2, y2)).toEqual(reusedExpected);
   });
 });
 
 describe('composeTransform', () => {
-  const dx = -6;
-  const dy = 10;
-  const translator = translate2d(dx, dy);
-  const sx = 3;
-  const sy = 2;
-  const scaler = scale2d(sx, sy);
-
   test('should return a function', () => {
+    const dx = -6;
+    const dy = 10;
+    const translator = translate2d(dx, dy);
+    const sx = 3;
+    const sy = 2;
+    const scaler = scale2d(sx, sy);
+
     expect(typeof composeTransform(translator, scaler)).toBe('function');
   });
 
   test('should compose two translate functions', () => {
+    const dx = -6;
+    const dy = 10;
+    const translator = translate2d(dx, dy);
+    const sx = 3;
+    const sy = 2;
+    const scaler = scale2d(sx, sy);
+
     const composeTranslate = composeTransform(translator, translator);
     expect(composeTranslate(0, 0)).toEqual([-12, 20]);
   });
 
   test('should compose two scale functions', () => {
+    const dx = -6;
+    const dy = 10;
+    const translator = translate2d(dx, dy);
+    const sx = 3;
+    const sy = 2;
+    const scaler = scale2d(sx, sy);
+
     const composeScale = composeTransform(scaler, scaler);
     expect(composeScale(1, 1)).toEqual([9, 4]);
   });
 
   test('should compose in the correct order: g(f(x))', () => {
+    const dx = -6;
+    const dy = 10;
+    const translator = translate2d(dx, dy);
+    const sx = 3;
+    const sy = 2;
+    const scaler = scale2d(sx, sy);
+
     const composed = composeTransform(scaler, translator);
     expect(composed(0, 0)).toEqual([-6, 10]);
   });
 
   test('should compose in the opposite order: f(g(x))', () => {
+    const dx = -6;
+    const dy = 10;
+    const translator = translate2d(dx, dy);
+    const sx = 3;
+    const sy = 2;
+    const scaler = scale2d(sx, sy);
+
     const composed = composeTransform(translator, scaler);
     expect(composed(0, 0)).toEqual([-18, 20]);
   });
