@@ -55,6 +55,12 @@ describe('limesToCut', () => {
   test('works if no limes are available', () => {
     expect(limesToCut(10, [])).toBe(0);
   });
+
+  test('limes array does not mutate', () => {
+    const limes = ['small'];
+    limesToCut(8, limes);
+    expect(limes).toEqual(['small']);
+  });
 });
 
 describe('remainingOrders', () => {
