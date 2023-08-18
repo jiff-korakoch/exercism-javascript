@@ -109,4 +109,10 @@ describe('remainingOrders', () => {
     const expected = ['Pure Strawberry Joy'];
     expect(remainingOrders(0.2, orders)).toEqual(expected);
   });
+
+  test('orders array does not mutate', () => {
+    const orders = ['juice', 'juice', 'juice'];
+    remainingOrders(3, orders);
+    expect(orders).toEqual(['juice', 'juice', 'juice']);
+  });
 });
