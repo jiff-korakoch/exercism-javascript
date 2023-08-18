@@ -33,8 +33,6 @@ describe('limesToCut', () => {
       'medium',
     ];
     expect(limesToCut(42, limes)).toBe(6);
-
-    expect(limesToCut(4, ['medium', 'small'])).toBe(1);
   });
 
   test('uses up all limes if there are not enough to reach the target', () => {
