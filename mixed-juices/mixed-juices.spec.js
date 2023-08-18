@@ -45,7 +45,6 @@ describe('limesToCut', () => {
       'large',
       'large',
     ];
-
     expect(limesToCut(80, limes)).toBe(7);
   });
 
@@ -68,7 +67,6 @@ describe('remainingOrders', () => {
       'Pure Strawberry Joy',
     ];
     const expected = ['All or Nothing', 'Pure Strawberry Joy'];
-
     expect(remainingOrders(7, orders)).toEqual(expected);
   });
 
@@ -85,7 +83,6 @@ describe('remainingOrders', () => {
       'Limetime',
     ];
     const expected = ['All or Nothing', 'Green Garden', 'Limetime'];
-
     expect(remainingOrders(13, orders)).toEqual(expected);
   });
 
@@ -98,14 +95,12 @@ describe('remainingOrders', () => {
       'Tropical Island',
       'Limetime',
     ];
-
     expect(remainingOrders(12, orders)).toEqual([]);
   });
 
   test('works if there is only very little time left', () => {
     const orders = ['Bananas Gone Wild', 'Pure Strawberry Joy'];
     const expected = ['Pure Strawberry Joy'];
-
     expect(remainingOrders(0.2, orders)).toEqual(expected);
   });
 });
