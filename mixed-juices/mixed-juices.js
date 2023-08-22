@@ -63,7 +63,7 @@ export function limesToCut(wedgesNeeded, limes) {
  */
 export function remainingOrders(timeLeft, orders) {
   let i = 0;
-  while (timeLeft > 0) {
+  while (timeLeft > 0 && i < orders.length) {
     timeLeft -= timeToMixJuice(orders[i]);
     i++;
   }

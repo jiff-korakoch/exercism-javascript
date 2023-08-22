@@ -115,4 +115,9 @@ describe('remainingOrders', () => {
     remainingOrders(3, orders);
     expect(orders).toEqual(['juice', 'juice', 'juice']);
   });
+
+  test('infinite time', () => {
+    const orders = ['juice','juice'];
+    remainingOrders(Number.POSITIVE_INFINITY, orders);
+  });
 });
