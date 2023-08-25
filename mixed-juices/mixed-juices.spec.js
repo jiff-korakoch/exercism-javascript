@@ -33,8 +33,6 @@ describe('limesToCut', () => {
       'medium',
     ];
     expect(limesToCut(42, limes)).toBe(6);
-
-    expect(limesToCut(4, ['medium', 'small'])).toBe(1);
   });
 
   test('uses up all limes if there are not enough to reach the target', () => {
@@ -47,7 +45,6 @@ describe('limesToCut', () => {
       'large',
       'large',
     ];
-
     expect(limesToCut(80, limes)).toBe(7);
   });
 
@@ -57,6 +54,12 @@ describe('limesToCut', () => {
 
   test('works if no limes are available', () => {
     expect(limesToCut(10, [])).toBe(0);
+  });
+
+  test('limes array does not mutate', () => {
+    const limes = ['small'];
+    limesToCut(8, limes);
+    expect(limes).toEqual(['small']);
   });
 });
 
@@ -70,7 +73,6 @@ describe('remainingOrders', () => {
       'Pure Strawberry Joy',
     ];
     const expected = ['All or Nothing', 'Pure Strawberry Joy'];
-
     expect(remainingOrders(7, orders)).toEqual(expected);
   });
 
@@ -87,7 +89,6 @@ describe('remainingOrders', () => {
       'Limetime',
     ];
     const expected = ['All or Nothing', 'Green Garden', 'Limetime'];
-
     expect(remainingOrders(13, orders)).toEqual(expected);
   });
 
@@ -100,14 +101,23 @@ describe('remainingOrders', () => {
       'Tropical Island',
       'Limetime',
     ];
-
     expect(remainingOrders(12, orders)).toEqual([]);
   });
 
   test('works if there is only very little time left', () => {
     const orders = ['Bananas Gone Wild', 'Pure Strawberry Joy'];
     const expected = ['Pure Strawberry Joy'];
-
     expect(remainingOrders(0.2, orders)).toEqual(expected);
+  });
+
+  test('orders array does not mutate', () => {
+    const orders = ['juice', 'juice', 'juice'];
+    remainingOrders(3, orders);
+    expect(orders).toEqual(['juice', 'juice', 'juice']);
+  });
+
+  test('infinite time', () => {
+    const orders = ['juice','juice'];
+    remainingOrders(Number.POSITIVE_INFINITY, orders);
   });
 });

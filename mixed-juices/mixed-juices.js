@@ -11,25 +11,19 @@
  * @returns {number} time in minutes
  */
 export function timeToMixJuice(name) {
-  let timeInMinutes = 0;
-  
-  switch(name){
+  switch (name) {
     case "Pure Strawberry Joy":
-      return timeInMinutes = 0.5;
-      break;
-    case "Energizer" :
+      return 0.5;
+    case "Energizer":
     case "Green Garden":
-      return timeInMinutes = 1.5;
-      break;
-    case "Tropical Island" :
-      return timeInMinutes = 3;
-      break;
-    case "All or Nothing" :
-      return timeInMinutes = 5;
-      break;
+      return 1.5;
+    case "Tropical Island":
+      return 3;
+    case "All or Nothing":
+      return 5;
     default:
-      return timeInMinutes = 2.5;
-  };
+      return 2.5;
+  }
 }
 
 /**
@@ -41,26 +35,24 @@ export function timeToMixJuice(name) {
  * @returns {number} number of limes cut
  */
 export function limesToCut(wedgesNeeded, limes) {
-  //let wedgesNeed = 25
-  //let lime = ["small","small","large","medium","small"];
   let numberLimesCut = 0; 
-  
-  while(limes.length > 0 && wedgesNeeded > 0){
-    switch(limes.shift()){
-      case "small" : 
+  let i = 0;
+  while (i < limes.length && wedgesNeeded > 0) {
+    switch (limes[i]) {
+      case "small":
         wedgesNeeded -= 6;
-        break;      
-        case "medium" :
+        break;
+      case "medium":
         wedgesNeeded -= 8;
         break;
-      case "large" :
+      case "large":
         wedgesNeeded -= 10;
         break;
-    } numberLimesCut = numberLimesCut + 1;
-      //console.log(wedgesNeed);
-  } return numberLimesCut;
-  
-  
+    }
+    numberLimesCut += 1;
+    i++;
+  }
+  return numberLimesCut;
 }
 /**
  * Determines which juices still need to be prepared after the end of the shift.
@@ -70,27 +62,10 @@ export function limesToCut(wedgesNeeded, limes) {
  * @returns {string[]} remaining orders after the time is up
  */
 export function remainingOrders(timeLeft, orders) {
-  //let time = 7;
-  //let order = ['Tropical Island','Energizer', 'Limetime','All or Nothing','Pure Strawberry Joy'];
-    while (timeLeft > 0){
-    switch (orders.shift()){
-      case "Pure Strawberry Joy":
-      timeLeft -= 0.5;
-      break;
-    case "Energizer" :
-    case "Green Garden":
-      timeLeft -= 1.5;
-      break;
-    case "Tropical Island" :
-      timeLeft -= 3;
-      break;
-    case "All or Nothing" :
-      timeLeft -= 5;
-      break;
-    default:
-      timeLeft -= 2.5;
-      
-    }
-      //  console.log(timeLeft,orders);
-    }  return orders;
+  let i = 0;
+  while (timeLeft > 0 && i < orders.length) {
+    timeLeft -= timeToMixJuice(orders[i]);
+    i++;
+  }
+  return orders.slice(i);
 }
